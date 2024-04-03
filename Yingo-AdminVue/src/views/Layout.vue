@@ -19,7 +19,7 @@ import router from '@/router';
 
 <template>
     <el-container class="layout-container">
-        <!-- 左侧菜单 -->
+        <!-- Menu izquierda -->
         <el-aside width="200px">
     <div class="el-aside__logo"></div>
     <el-menu active-text-color="#ffd04b" background-color="#3189cc" text-color="#fff" router>
