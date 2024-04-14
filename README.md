@@ -1,25 +1,25 @@
-# Proyecto Final: Interfaz de Administración Vue.js
+# Proyecto Final: YingoShop
 
 ## Descripción
-Este proyecto consiste en el desarrollo de una interfaz de administración utilizando Vue.js para gestionar productos y clientes. Además, la interfaz permitirá la creación de ofertas especiales o limitadas.
+YingoShop es un proyecto que consiste en el desarrollo de un sistema de comercio electrónico completo, que incluye un frontend desarrollado con Vue.js para la administración, un backend implementado en Spring Boot para gestionar la lógica de negocio y un cliente Android desarrollado en Kotlin para la interacción de los usuarios finales.
 
 ## Tecnologías Utilizadas
 
-### Interfaz de Administración (Vue.js)
+### Administrador (Vue.js)
 - Desarrollo de la interfaz de administración utilizando Vue.js.
 - Gestión de productos y clientes.
 - Creación de ofertas especiales o limitadas.
 
-### Backend (Spring Boot)
+### Servidor (Spring Boot)
 - Desarrollo de servicios REST utilizando Spring Boot para interactuar con la base de datos.
 - Implementación de operaciones CRUD para productos y clientes.
 - Integración de Hibernate o MyBatis para gestionar la capa de acceso a datos.
 
-### Aplicación de Cliente (Android Studio)
+### Aplicación de Cliente (Android)
 - Desarrollo de una aplicación de cliente en Kotlin para visualizar productos y realizar pedidos.
 
 ## Instrucciones de Ejecución
-1. Clonar el repositorio del proyecto.
+1. Clonar el repositorio del proyecto .
 2. Configurar y ejecutar el backend utilizando Spring Boot.
 3. Ejecutar la interfaz de administración Vue.js.
 4. Instalar y ejecutar la aplicación de cliente en Android Studio.
