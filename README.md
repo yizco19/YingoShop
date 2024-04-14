@@ -19,10 +19,7 @@ YingoShop es un proyecto que consiste en el desarrollo de un sistema de comercio
 - Desarrollo de una aplicación de cliente en Kotlin para visualizar productos y realizar pedidos.
 
 ## Instrucciones de Ejecución
-1. Clonar el repositorio del proyecto .
-2. Configurar y ejecutar el backend utilizando Spring Boot.
-3. Ejecutar la interfaz de administración Vue.js.
-4. Instalar y ejecutar la aplicación de cliente en Android Studio.
+
 
 ## Contribución
 Las contribuciones son bienvenidas. Si deseas contribuir a este proyecto, por favor sigue estas instrucciones:
