@@ -20,7 +20,7 @@ YingoShop es un proyecto que consiste en el desarrollo de un sistema de comercio
 
 ## Instrucciones de Ejecución
 [Servidor](https://github.com/yizco19/YingoShop/tree/master)
-[App cliente](https://github.com/yizco19/Proyecto_Final.git)
+[App cliente](https://github.com/yizco19/Yingo_App)
 
 
 ## Contribución
