@@ -69,7 +69,11 @@ const handleCommand = (command) => {
 
 <template>
     <el-container class="layout-container">
+<<<<<<< HEAD
         <!-- Elementos de la barra lateral -->
+=======
+        <!-- Menu izquierda -->
+>>>>>>> fce824f04c97b3cfb93fcaa2dc18486c293a7024
         <el-aside width="200px">
     <div class="el-aside__logo"></div>
     <el-menu active-text-color="#ffd04b" background-color="#3189cc" text-color="#fff" router>
