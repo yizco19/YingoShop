@@ -33,6 +33,11 @@ export const userLoginService = (loginData) => {
 export const userInfoService = () => {
     return request.get('/admin/userInfo')
 }
+
+export const userListService = () => {
+    return request.get('/user/list');
+}
+
 // Actualiza los datos del usuario
 export const userUpdateService = (userData) => {
     return request.put('/admin/update', userData)
@@ -46,7 +51,4 @@ export const userUpdateAvatarService = (avatarUrl) => {
 // Actualiza la contraseña del usuario
 export const userUpdatePasswordService = (passwordData) => {
     return request.patch('/admin/updatePwd', passwordData)
-}
-export const userListService =() => {
-    return request.get('/admin/list')
 }

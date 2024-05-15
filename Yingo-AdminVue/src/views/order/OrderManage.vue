@@ -4,6 +4,8 @@ import {
     Delete,
     View
 } from '@element-plus/icons-vue'
+
+import { ElMessage,ElMessageBox } from 'element-plus';
 const orders = ref([
     {
         "id":1,
@@ -27,7 +29,7 @@ const orders = ref([
 ])
 
 const users = ref([])
-const items = ref({})
+const items = ref([])
 const products= ref({})
 
 import { ref } from 'vue'
@@ -35,13 +37,13 @@ import { orderListService,orderItemList } from '@/api/order.js';
 import { userListService } from '@/api/user.js';
 import { productListAllService } from '@/api/product.js';
 const productList = async () => {
-    let result = await productListService();
+    let result = await productListAllService();
     products.value = result.data;
 }
 
-
 const userList = async () => {
     let result = await userListService();
+
     users.value = result.data;
 }
 const orderList = async () => {
@@ -54,7 +56,7 @@ const orderList = async () => {
         for (let j = 0; j < users.value.length; j++) {
             let user = users.value[j];
             if (order.userId === user.id) {
-                order.userName = user.userName
+                order.userName = user.nickname
             }
         }
     }
@@ -62,41 +64,11 @@ const orderList = async () => {
 const itemList = async (id) => {
     let result = await orderItemList(id);
     items.value = result.data;
-
-}
-userList();
-orderList();
-productList();
-const orderModel = ref({
-    id: '',
-    userName: '',
-    total: '',
-    status: '',
-    createdAt: '',
-    items: [
-        {
-            productId: '',
-            productPic: '',
-            productName: '',
-            quantity: ''
-        }
-    ]
-})
-// Visible del Drawer
-const visibleDrawer = ref(false)
-// Agregar categoría a la base de datos y cerrar el dialogo
-import { ElMessage,ElMessageBox } from 'element-plus';
-
-const showDialog = (row) => {
-    itemList (row.id);
-    orderModel.value.id = row.id
-    orderModel.value.userName = row.userName
-    orderModel.value.total = row.total
-    orderModel.value.status = row.status
-    orderModel.value.createdAt = row.createdAt
-    visibleDrawer.value = true
     for(let i = 0; i < items.value.length; i++){
+        console.log(items.value[i].productId)
         for(let j = 0; j < products.value.length; j++){
+   
+
             if(items.value[i].productId === products.value[j].id){
                 items.value[i].productId = products.value[j].id
                 items.value[i].productName = products.value[j].name
@@ -106,11 +78,39 @@ const showDialog = (row) => {
         }
 
     }
+}
+userList();
+orderList();
+productList();
+const orderModel = ref({
+    id: '',
+    userName: '',
+    total: '',
+    status: '',
+    createdAt: ''
+})
+// Visible del Drawer
+const visibleDrawer = ref(false)
+
+
+const showDialog = (row) => {
+
+    console.log(items.value);
+    orderModel.value.id = row.id
+    orderModel.value.userName = row.userName
+    orderModel.value.total = row.total
+    orderModel.value.status = row.status
+    orderModel.value.createdAt = row.createdAt
+
+    itemList (row.id);
+
+    visibleDrawer.value = true
 
 }
 const actionExit =() => {
     visibleDrawer.value = false
 }
+
 </script>
 <template>
     <el-card class="page-container">
@@ -138,7 +138,7 @@ const actionExit =() => {
             <!-- dialogo  drawer -->
             <el-drawer v-model="visibleDrawer" title="Detalles del pedido" direction="rtl" size="80%">
                 <!-- datalles de la orden -->
-                <el-descriptions title="Detalles de la orden">
+                <el-descriptions title="Información del pedido">
                     <el-descriptions-item label="ID">{{ orderModel.id }}</el-descriptions-item>
                     <el-descriptions-item label="Usuario">{{ orderModel.userName }}</el-descriptions-item>
                     <el-descriptions-item label="Total">{{ orderModel.total }}</el-descriptions-item>
@@ -146,19 +146,23 @@ const actionExit =() => {
                     <el-descriptions-item label="Fecha">{{ orderModel.createdAt }}</el-descriptions-item>
                 </el-descriptions>
                     
-                <!-- items de la orden -->
-                <el-table :data="items" style="width: 100%">
-                    <el-table-column prop="productId" label="ID" width="100" />
-                    <el-table-column prop="productName" label="Nombre" />
-                    <el-table-column prop="productPic" label="Image">
-                        <el-image style="width: 100px; height: 100px" :src="productPic" :preview-src-list="[productPic]" />
-                    </el-table-column>
-                    <el-table-column prop="quantity" label="Quantity" />
+                <el-table :data="items" style="width: 70%">
+                    <el-table-column prop="productId" label="ID" width="70" />
+                    <el-table-column prop="productName" label="Nombre"  width="200" />
+                    
+                    <el-table-column label="Image" align="center">
+    <template #default="{ row }">
+        <img v-if="row.productPic" :src="row.productPic" class="avatar"  style="max-width: 200px; max-height: 200px;"/>
+    </template>
+</el-table-column>
+
+                    <el-table-column prop="quantity" label="Cantidad" width="70" />
                 </el-table>
-            </el-drawer>
-            <el-form-item>
+                <el-form-item>
           <el-button type="primary" @click="actionExit()">Salir</el-button>
         </el-form-item>
+            </el-drawer>
+
         </el-card>
 
 </template>
