@@ -7,3 +7,6 @@ export const orderListService = () => {
     
     return request.get('/order/admin/list')
 }
+export const orderItemList = (id) => {
+    return request.get('/order/items?id='+id)
+}

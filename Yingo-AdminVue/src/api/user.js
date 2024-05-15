@@ -47,3 +47,6 @@ export const userUpdateAvatarService = (avatarUrl) => {
 export const userUpdatePasswordService = (passwordData) => {
     return request.patch('/admin/updatePwd', passwordData)
 }
+export const userListService =() => {
+    return request.get('/admin/list')
+}

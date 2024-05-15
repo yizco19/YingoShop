@@ -24,3 +24,6 @@ export const productUpdateService = (productData) => {
 export const productDeleteService = (id) => {
     return request.delete('/product?id='+ id)
 }
+export const productListAllService = () => {
+    return request.get('/product/list')
+}
