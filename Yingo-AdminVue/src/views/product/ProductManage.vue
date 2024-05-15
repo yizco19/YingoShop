@@ -105,7 +105,6 @@ const tokenStore = useTokenStore()
 //Función si la imagen se sube correctamente
 const uploadSuccess = (result) => {
   productModel.value.productPic = result.data
-  console.log(result.data);
   
 }
 const checkPrice = (rule, value, callback) => {
@@ -136,27 +135,30 @@ const addProduct = async() => {
 
   // Cerrar el dialogo
   visibleDrawer.value = false
+  productList()
 
 }
-const title = ref('')
+const title = ref('Agregar producto')
 //Muestra el formulario de edición
 const showDialog = (row) => {
+  title.value = 'Editar producto' ; 
   //Abrir el dialogo
   visibleDrawer.value = true
   //Insertar los datos
-  productModel.categoryId = row.categoryId
-  productModel.name = row.name
-  productModel.description = row.description
-  productModel.price = row.price
-  productModel.productPic = row.productPic
-  //Muestra el dialogo
-  visibleDrawer.value = true
+  productModel.value.id = row.id
+  productModel.value.categoryId = row.categoryId
+  productModel.value.name = row.name
+  productModel.value.description = row.description
+  productModel.value.price = row.price
+  productModel.value.productPic = row.productPic
 }
 const updateProduct = async() => {
+  console.log(productModel.value);
   let result = await productUpdateService(productModel.value)
 
   ElMessage.success(result.msg ? result.msg : 'Producto actualizado')
-  visibleDrawer.value = false
+  productList()
+
 }
 
 const clearData = ()=>{
@@ -169,15 +171,17 @@ const clearData = ()=>{
 
 const actionDialog = () => {
     if(title.value === 'Editar producto'){
+
       updateProduct();
 
     }else if(title.value === 'Agregar producto'){
       addProduct();
     }
-    productList()
+    visibleDrawer.value = false
+ 
 }
 
-deleteProduct = async(id) => {
+const deleteProduct = async(id) => {
   ElMessageBox.confirm(
     '¿Estás seguro de eliminar esta producto?',
     'Warning',
@@ -212,7 +216,7 @@ deleteProduct = async(id) => {
     <template #header>
       <div class="header">
         <span>Gestión de Productos</span>
-        <el-button type="primary" @click="visibleDrawer = true title = 'Agregar Producto' clearData()">Agregar producto</el-button>
+        <el-button type="primary" @click="visibleDrawer = true ; clearData()">Agregar producto</el-button>
       </div>
     </template>
 
@@ -244,7 +248,7 @@ deleteProduct = async(id) => {
       <el-table-column prop="visible" label="Visible" />
       <el-table-column label="change" width="150">
         <template #default="{ row }">
-          <el-button :icon="Edit" circle plain type="primary" @click="updateProduct(row) title = 'Editar Producto'"></el-button>
+          <el-button :icon="Edit" circle plain type="primary" @click="showDialog(row)"></el-button>
           <el-button :icon="Delete" circle plain type="danger" @click="deleteProduct(row.id)"></el-button>
         </template>
       </el-table-column>

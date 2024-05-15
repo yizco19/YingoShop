@@ -11,6 +11,7 @@ import UserAvatarVue from '@/views/user/UserAvatar.vue'
 import UserInfoVue from '@/views/user/UserInfo.vue'
 import UserResetPasswordVue from '@/views/user/UserResetPassword.vue'
 import OfferManage from '@/views/offer/OfferManage.vue'
+import OrderManage from '@/views/order/OrderManage.vue'
 
 // Definir las rutas
 const routes = [
@@ -23,6 +24,7 @@ const routes = [
         {path:'/user/avatar',component:UserAvatarVue},
         {path:'/user/resetPassword',component:UserResetPasswordVue},
         {path:'/offer/manage',component:OfferManage},
+        {path:'/order/manage',component:OrderManage},
     ]}
 ]
 

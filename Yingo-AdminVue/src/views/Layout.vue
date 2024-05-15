@@ -2,6 +2,7 @@
 import {
     HomeFilled,
     Goods,
+    Tickets,
     UserFilled,
     User,
     Crop,
@@ -13,13 +14,62 @@ import {
 } from '@element-plus/icons-vue'
 import avatar from '@/assets/default.png'
 import router from '@/router';
+import { userInfoService } from '@/api/user';
+import useUserInfoStore from '@/store/userInfo';
+import { useTokenStore } from '@/store/token';
+const userInfoStore = useUserInfoStore()
+const tokenStore = useTokenStore()
+const getUserInfo = async () => {
+    let result = await userInfoService();
+    console.log("test");
+    console.log(result.data);
+        userInfoStore.setInfo(result.data);
 
+}
+getUserInfo();
+import { useRouter } from 'vue-router';
+import { ElMessage, ElMessageBox } from 'element-plus';
+// si ha click los botones de la barra lateral, se redirige a la vista correspondiente
+const handleCommand = (command) => {
+    // comprobar el comando y redirigir a la vista correspondiente
+    if (command === 'logout') {
+        ElMessageBox.confirm(
+    '¿Estás seguro de cerrar sesión?',
+    'Warning',
+    {
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel',
+      type: 'warning',
+    }
+  )
+    .then(async() => {
+        // limpiar el token y datos del usuario
+        userInfoStore.removeInfo()
+        tokenStore.removeToken()
+        router.push('/login')
+      ElMessage({
+        type: 'success',
+        message: 'Cerrando sesión correctamente!',
+      })
+})
+    .catch(() => {
+      ElMessage({
+        type: 'info',
+        message: 'Usuario cancelado la operación',
+      })
+    })
+        // cerrar la sesion
+        alert('Cerrando sesión')
+    } else{
+        router.push('/user/' + command)
+    }
+}
 </script>
 
 
 <template>
     <el-container class="layout-container">
-        <!-- 左侧菜单 -->
+        <!-- Elementos de la barra lateral -->
         <el-aside width="200px">
     <div class="el-aside__logo"></div>
     <el-menu active-text-color="#ffd04b" background-color="#3189cc" text-color="#fff" router>
@@ -36,6 +86,12 @@ import router from '@/router';
         <el-menu-item index="/product/manage">
             <el-icon><Goods /></el-icon>
             <span>Gestión de Productos</span>
+        </el-menu-item>
+        <el-menu-item index="/order/manage">
+            <el-icon>
+                <Tickets />
+            </el-icon>
+            <span>Gestión de Pedidos</span>
         </el-menu-item>
         <el-menu-item index="/offer/manage">
             <el-icon>
@@ -76,19 +132,20 @@ import router from '@/router';
         <el-container>
             <!-- Elementos de encabezado -->
             <el-header>
-                <div>Admin：<strong></strong></div>
-                <el-dropdown placement="bottom-end">
+                <div>Admin：<strong>{{ userInfoStore.info.nickname }}</strong></div>
+                        <!-- command: cuando un botón es pulsado, se ejecuta esta función  para el comando correspondiente respectivo-->
+                <el-dropdown placement="bottom-end" @command="handleCommand">
                     <span class="el-dropdown__box">
-                        <el-avatar :src="avatar" />
+                        <el-avatar :src="userInfoStore.info.userPic?userInfoStore.info.userPic:avatar" />
                         <el-icon>
                             <CaretBottom />
                         </el-icon>
                     </span>
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <el-dropdown-item command="profile" :icon="User">Perfil</el-dropdown-item>
+                            <el-dropdown-item command="info" :icon="User">Perfil</el-dropdown-item>
                             <el-dropdown-item command="avatar" :icon="Crop">Cambiar avatar</el-dropdown-item>
-                            <el-dropdown-item command="password"
+                            <el-dropdown-item command="resetPassword"
                                 :icon="EditPen">Restablecercontraseña</el-dropdown-item>
                             <el-dropdown-item command="logout" :icon="SwitchButton">Cerrar sesión</el-dropdown-item>
                         </el-dropdown-menu>

@@ -17,7 +17,7 @@ export const productAddService = (productData) => {
 }
 // Actualiza un producto
 export const productUpdateService = (productData) => {
-    return request.put('/category', productData)
+    return request.put('/product/update', productData)
     
 }
 // Elimina un producto

@@ -55,7 +55,7 @@ const title = ref('')
 
 const showDialog = (row) => {
     dialogVisible.value = true;
-     title.value = 'Editar categoría' ; 
+    title.value = 'Editar categoría' ; 
     categoryModel.value.categoryName = row.categoryName
     categoryModel.value.categoryAlias = row.categoryAlias
     categoryModel.value.id = row.id
