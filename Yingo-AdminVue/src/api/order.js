@@ -10,3 +10,6 @@ export const orderListService = () => {
 export const orderItemList = (id) => {
     return request.get('/order/items?id='+id)
 }
+export const orderDeleteService = (id) => {
+    return request.delete('/order?id='+ id)
+}

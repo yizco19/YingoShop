@@ -242,7 +242,11 @@ const deleteProduct = async(id) => {
     <!-- Tabla de datos -->
     <el-table :data="products" style="width: 100%">
       <el-table-column prop="name" label="Nombre" width="300" />
-      <el-table-column prop="productPic" label="Image" />
+      <el-table-column label="Image" align="center">
+    <template #default="{ row }">
+        <img v-if="row.productPic" :src="row.productPic" class="avatar"  style="max-width: 200px; max-height: 200px;"/>
+    </template>
+</el-table-column>
       <el-table-column prop="categoryName" label="Categoria" />
       <el-table-column prop="price" label="Precio" />
       <el-table-column prop="visible" label="Visible" />

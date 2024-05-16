@@ -31,9 +31,32 @@ const orders = ref([
 const users = ref([])
 const items = ref([])
 const products= ref({})
+const statusOptions = [ // Opciones para el select de estado
+    { label: 'PENDING', value: 'PENDING' },
+    { label: 'PROCESSING', value: 'PROCESSING' },
+    { label: 'SHIPPED', value: 'SHIPPED' },
+    { label: 'DELIVERED', value: 'DELIVERED' },
+    { label: 'CANCELLED', value: 'CANCELLED' },
+];
+const getStatusText = (statusNumber) => {
+    switch (statusNumber) {
+        case OrderConstant.PENDING:
+            return 'PENDING';
+        case OrderConstant.PROCESSING:
+            return 'PROCESSING';
+        case OrderConstant.SHIPPED:
+            return 'SHIPPED';
+        case OrderConstant.DELIVERED:
+            return 'DELIVERED';
+        case OrderConstant.CANCELLED:
+            return 'CANCELLED';
+        default:
+            return 'UNKNOWN';
+    }
+}
 
 import { ref } from 'vue'
-import { orderListService,orderItemList } from '@/api/order.js';
+import { orderListService,orderItemList ,orderDeleteService} from '@/api/order.js';
 import { userListService } from '@/api/user.js';
 import { productListAllService } from '@/api/product.js';
 const productList = async () => {
@@ -53,14 +76,23 @@ const orderList = async () => {
     // agregar al orders userName
     for (let i = 0; i < orders.value.length; i++) {
         let order = orders.value[i];
+        // cambia el formato de la fecha a YYYY-MM-DD
+        const originalDate = order.createdAt;
+        const formattedDate = originalDate.slice(0, 10);
+        order.createdAt = formattedDate;
+
+        // cambia status a texto
+        order.status = getStatusText(order.status);
+
         for (let j = 0; j < users.value.length; j++) {
             let user = users.value[j];
             if (order.userId === user.id) {
-                order.userName = user.nickname
+                order.userName = user.nickname;
             }
         }
     }
-}
+};
+
 const itemList = async (id) => {
     let result = await orderItemList(id);
     items.value = result.data;
@@ -91,6 +123,8 @@ const orderModel = ref({
 })
 // Visible del Drawer
 const visibleDrawer = ref(false)
+// Visible del Dialog
+const visibleDialog = ref(false)
 
 
 const showDialog = (row) => {
@@ -110,7 +144,38 @@ const showDialog = (row) => {
 const actionExit =() => {
     visibleDrawer.value = false
 }
+const deleteOrder = (id) => {
 
+    ElMessageBox.confirm(
+        '¿Estas seguro de eliminar este pedido?',
+        'Confirmar',
+        {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancelar',
+            type: 'warning',
+        }
+    )
+        .then(async() => {
+            let result = await orderDeleteService(id)
+            ElMessage({
+                type: 'success',
+                message: 'Eliminado correctamente',
+            })
+            //Carga la lista de pedidos
+            orderList()
+        })
+        .catch(() => {
+            ElMessage({
+                type: 'info',
+                message: 'Cancelado',
+            })
+        })
+}
+const editStatus = (row) => {
+
+    visibleDialog.value = true
+    
+}
 </script>
 <template>
     <el-card class="page-container">
@@ -126,8 +191,8 @@ const actionExit =() => {
                 <el-table-column label="Acciones" width="150">
                 <template #default ="{ row }">
                     <el-button :icon="View" circle plain type="primary" @click="showDialog(row)" ></el-button>
-                    <el-button :icon="Edit" circle plain type="primary" ></el-button>
-                    <el-button :icon="Delete" circle plain type="danger"></el-button>
+                    <el-button :icon="Edit" circle plain type="primary" @click="editStatus(row)"></el-button>
+                    <el-button :icon="Delete" circle plain type="danger" @click="deleteOrder(row.id)"></el-button>
 
                 </template>
             </el-table-column>
@@ -162,7 +227,36 @@ const actionExit =() => {
           <el-button type="primary" @click="actionExit()">Salir</el-button>
         </el-form-item>
             </el-drawer>
-
+        <!-- Contenido del diálogo -->
+        <el-dialog v-model="visibleDialog" title="Editar estado del pedido">
+        <!-- Contenido del diálogo -->
+        <el-form ref="editStatusForm" :model="editStatusForm" label-width="120px">
+            <el-form-item label="Nuevo Estado">
+                <el-select v-model="editStatusForm.newStatus" placeholder="Seleccione un estado">
+                    <el-option v-for="(status, index) in statusOptions" :key="index" :label="status.label" :value="status.value"></el-option>
+                </el-select>
+            </el-form-item>
+        </el-form>
+        <!-- Botones de confirmación y cancelación -->
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="visibleDialog = false">Cancelar</el-button>
+            <el-button type="primary" @click="updateStatus">Confirmar</el-button>
+        </div>
+    </el-dialog>
         </el-card>
 
+
 </template>
+
+<style lang="scss" scoped>
+.page-container {
+  min-height: 100%;
+  box-sizing: border-box;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+</style>
