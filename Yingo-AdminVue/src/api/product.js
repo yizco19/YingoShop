@@ -27,3 +27,6 @@ export const productDeleteService = (id) => {
 export const productListAllService = () => {
     return request.get('/product/list')
 }
+export const productVisibleService = (id, visible) => {
+    return request.put('/product/visibility?id='+ id + '&visible=' + visible)
+}

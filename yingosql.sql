@@ -98,7 +98,7 @@ CREATE TABLE `offer` (
   FOREIGN KEY (`product_id`) REFERENCES `product`(`id`)
 );
 /*
-INSERT INTO `admin` (`username`, `nickname`, `email`, `password`, `rol`, `user_pic`) VALUES
+INSERT INTO `admin` (`usearname`, `nickname`, `email`, `password`, `rol`, `user_pic`) VALUES
 ('admin', 'admin', 'admin', 'admin', 1001, 'admin.png');
 
 INSERT INTO `user` (`username`, `nickname`, `email`, `password`, `userPic`, `gender`, `birthdate`, `address`, `phone`, `money`) VALUES

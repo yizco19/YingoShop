@@ -13,3 +13,8 @@ export const orderItemList = (id) => {
 export const orderDeleteService = (id) => {
     return request.delete('/order?id='+ id)
 }
+
+export const orderUpdateServiceStatus = (id, status) => {
+    return request.put('/order/status?orderId='+id+'&status='+status)
+
+}
