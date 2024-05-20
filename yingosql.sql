@@ -97,6 +97,14 @@ CREATE TABLE `offer` (
   `price` DECIMAL(10,2),
   FOREIGN KEY (`product_id`) REFERENCES `product`(`id`)
 );
+CREATE TABLE favorite (
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    PRIMARY KEY (user_id, product_id),
+    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES Products(id) ON DELETE CASCADE
+);
+
 /*
 INSERT INTO `admin` (`usearname`, `nickname`, `email`, `password`, `rol`, `user_pic`) VALUES
 ('admin', 'admin', 'admin', 'admin', 1001, 'admin.png');
