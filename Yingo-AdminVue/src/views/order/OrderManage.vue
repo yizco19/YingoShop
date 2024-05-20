@@ -2,9 +2,16 @@
 import {
     Edit,
     Delete,
-    View
+    View,
+    Iphone,
+    Location,
+    OfficeBuilding,
+    Tickets,
+    User
 } from '@element-plus/icons-vue'
+import type { ComponentSize } from 'element-plus'
 
+const size = ref < ComponentSize > ('default')
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { ref } from 'vue'
 import { orderListService, orderItemList, orderDeleteService, orderUpdateServiceStatus } from '@/api/order.js';
@@ -224,9 +231,18 @@ const updateStatus = async () => {
             </template>
         </el-table>
         <el-drawer v-model="visibleDrawer" title="Detalles del pedido" direction="rtl" size="80%">
-            <el-descriptions title="Información del pedido">
+            <el-descriptions title="Información del pedido" :size="size" border>
                 <el-descriptions-item label="ID">{{ orderModel.id }}</el-descriptions-item>
-                <el-descriptions-item label="Usuario">{{ orderModel.userName }}</el-descriptions-item>
+                <el-descriptions-item>
+                    <template #label>
+                        <div class="cell-item">
+                            <el-icon :style="iconStyle">
+                                <user />
+                            </el-icon>
+                            Username
+                        </div>
+                    </template>
+                    {{ orderModel.userName }}</el-descriptions-item>
                 <el-descriptions-item label="Total">{{ orderModel.total }}</el-descriptions-item>
                 <el-descriptions-item label="Estado">{{ orderModel.status }}</el-descriptions-item>
                 <el-descriptions-item label="Fecha">{{ orderModel.createdAt }}</el-descriptions-item>

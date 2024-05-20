@@ -28,6 +28,7 @@ const categoryList = async () => {
     categorys.value = result.data;
 }
 categoryList();
+
 const dialogVisible = ref(false)
 const categoryModel = ref({
     categoryName: '',

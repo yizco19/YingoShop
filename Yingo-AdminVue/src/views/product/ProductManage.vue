@@ -11,11 +11,13 @@ import {
 } from '@element-plus/icons-vue'
 import { categoryListService } from '@/api/category.js'
 import { productListService, productAddService, productUpdateService, productDeleteService, productVisibleService } from '@/api/product.js'
+import { offerListAllService } from '@/api/offer.js'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { useTokenStore } from '@/store/token'
 
 // Variables y referencias
+const offers = ref([])
 const categorys = ref([])
 const products = ref([])
 const categoryId = ref('')
@@ -37,6 +39,14 @@ const total = ref(20)
 const pageSize = ref(4)
 
 const tokenStore = useTokenStore()
+
+// Cargar ofertas
+const offerList = async () => {
+  let result = await offerListAllService()
+  offers.value = result.data
+}
+
+offerList()
 
 // Cargar categorías
 const categoryList = async () => {
@@ -63,6 +73,12 @@ const productList = async () => {
       let category = categorys.value[j]
       if (product.categoryId === category.id) {
         product.categoryName = category.categoryName
+      }
+    }
+    for (let k = 0; k < offers.value.length; k++) {
+      let offer = offers.value[k]
+      if (product.offerId === offer.id) {
+        product.offerTitle = offer.title
       }
     }
   }
@@ -228,6 +244,8 @@ onMounted(() => {
           <el-button v-if="row.visible" :icon="View" @click="toggleProductVisibility(row)" />
           <el-button v-else :icon="Hide" @click="toggleProductVisibility(row)" />
         </template>
+        <el-table-column prop="offerTitle" label="Ofertas" />
+
       </el-table-column>
       <el-table-column label="Acciones" width="150">
         <template #default="{ row }">
@@ -267,6 +285,11 @@ onMounted(() => {
         </el-form-item>
         <el-form-item prop="price" label="Precio">
           <el-input v-model="productModel.price" type="number" placeholder="Ingrese el precio"></el-input>
+        </el-form-item>
+        <el-form-item label="Oferta">
+          <el-select placeholder="Selecciona Oferta" v-model="productModel.offerId">
+            <el-option v-for="o in offers" :key="o.id" :label="o.offerTitle" :value="o.id"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="Imagen">
           <el-upload

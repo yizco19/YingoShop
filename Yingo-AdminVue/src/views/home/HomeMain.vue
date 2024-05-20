@@ -1,3 +1,26 @@
+
+<script setup>
+import { ref } from 'vue'
+import { ElCard, ElCalendar, ElTimeline, ElTimelineItem } from 'element-plus'
+
+// Datos de resumen ficticios
+const summaryItems = ref([
+  { title: 'Total de Pedidos', value: '150' },
+  { title: 'Usuarios Registrados', value: '500' },
+  { title: 'Ganancias Totales', value: '$25,000' },
+  // Agrega más elementos de resumen según tus necesidades
+])
+
+// Fecha seleccionada para el calendario
+const calendarDate = ref(new Date())
+
+// Datos ficticios de usuarios en línea
+const onlineUsers = ref([
+  { name: 'Usuario 1', lastActive: '2024-05-18 10:30:00' },
+  { name: 'Usuario 2', lastActive: '2024-05-18 11:15:00' },
+  { name: 'Usuario 3', lastActive: '2024-05-18 12:00:00' }
+])
+</script>
 <template>
     <div class="admin-home">
       <h1>Bienvenido al Panel de Administración</h1>
@@ -22,42 +45,9 @@
         <el-calendar v-model="calendarDate" :first-day-of-week="1" />
       </el-card>
   
-      <!-- Componente de tiempo en línea -->
-      <el-card class="online-time-card">
-        <h2 slot="header">Usuarios en línea</h2>
-        <el-timeline>
-          <el-timeline-item v-for="(user, index) in onlineUsers" :key="index" :timestamp="user.lastActive">
-            <p>{{ user.name }}</p>
-            <p>Última actividad: {{ user.lastActive }}</p>
-          </el-timeline-item>
-        </el-timeline>
-      </el-card>
-  
     </div>
   </template>
   
-  <script setup>
-  import { ref } from 'vue'
-  import { ElCard, ElCalendar, ElTimeline, ElTimelineItem } from 'element-plus'
-  
-  // Datos de resumen ficticios
-  const summaryItems = ref([
-    { title: 'Total de Pedidos', value: '150' },
-    { title: 'Usuarios Registrados', value: '500' },
-    { title: 'Ganancias Totales', value: '$25,000' },
-    // Agrega más elementos de resumen según tus necesidades
-  ])
-  
-  // Fecha seleccionada para el calendario
-  const calendarDate = ref(new Date())
-  
-  // Datos ficticios de usuarios en línea
-  const onlineUsers = ref([
-    { name: 'Usuario 1', lastActive: '2024-05-18 10:30:00' },
-    { name: 'Usuario 2', lastActive: '2024-05-18 11:15:00' },
-    { name: 'Usuario 3', lastActive: '2024-05-18 12:00:00' }
-  ])
-  </script>
   
   <style scoped>
   .admin-home {
