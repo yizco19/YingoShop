@@ -1,4 +1,4 @@
-<script setup>
+<script setup  lang="ts">
 import {
     Edit,
     Delete,
@@ -249,14 +249,14 @@ const updateStatus = async () => {
             </el-descriptions>
             <el-table :data="items" style="width: 70%">
                 <el-table-column prop="productId" label="ID" width="70" />
-                <el-table-column prop="productName" label="Nombre" width="200" />
+                <el-table-column prop="productName" label="Nombre" width="100" />
                 <el-table-column label="Image" align="center">
                     <template #default="{ row }">
                         <img v-if="row.productPic" :src="row.productPic" class="avatar"
                             style="max-width: 200px; max-height: 200px;" />
                     </template>
                 </el-table-column>
-                <el-table-column prop="quantity" label="Cantidad" width="70" />
+                <el-table-column prop="quantity" label="Cantidad" width="100" />
             </el-table>
             <el-form-item>
                 <el-button type="primary" @click="actionExit()">Salir</el-button>

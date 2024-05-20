@@ -101,8 +101,8 @@ CREATE TABLE favorite (
     user_id INT NOT NULL,
     product_id INT NOT NULL,
     PRIMARY KEY (user_id, product_id),
-    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES Products(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
 );
 
 /*

@@ -244,9 +244,9 @@ onMounted(() => {
           <el-button v-if="row.visible" :icon="View" @click="toggleProductVisibility(row)" />
           <el-button v-else :icon="Hide" @click="toggleProductVisibility(row)" />
         </template>
+      </el-table-column>
         <el-table-column prop="offerTitle" label="Ofertas" />
 
-      </el-table-column>
       <el-table-column label="Acciones" width="150">
         <template #default="{ row }">
           <el-button :icon="Edit" circle plain type="primary" @click="showDialog(row)"></el-button>
@@ -288,7 +288,7 @@ onMounted(() => {
         </el-form-item>
         <el-form-item label="Oferta">
           <el-select placeholder="Selecciona Oferta" v-model="productModel.offerId">
-            <el-option v-for="o in offers" :key="o.id" :label="o.offerTitle" :value="o.id"></el-option>
+            <el-option v-for="o in offers" :key="o.id" :label="o.title" :value="o.id"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="Imagen">
