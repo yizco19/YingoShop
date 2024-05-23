@@ -12,8 +12,8 @@ YingoShop es un proyecto que consiste en el desarrollo de un sistema de comercio
 
 ### Servidor (Spring Boot)
 - Desarrollo de servicios REST utilizando Spring Boot para interactuar con la base de datos.
-- Implementación de operaciones CRUD para productos y clientes.
-- Integración de Hibernate o MyBatis para gestionar la capa de acceso a datos.
+- Implementación de operaciones CRUD para productos , clientes y ofertas.
+- Integración de  MyBatis para gestionar la capa de acceso a datos.
 
 ### Aplicación de Cliente (Android)
 - Desarrollo de una aplicación de cliente en Kotlin para visualizar productos y realizar pedidos.
