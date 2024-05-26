@@ -187,11 +187,24 @@ const checkPrice = (rule, value, callback) => {
     callback()
   }
 }
+const checkStock = (rule, value, callback) => {
+  if (value && isNaN(Number(value))) {
+    callback(new Error('El stock debe ser un número'))
+  } else if (value && Number(value) <= 0) {
+    callback(new Error('El stock debe ser mayor que cero'))
+  } else {
+    callback()
+  }
+}
 
 const rules = {
   price: [
     { required: true, message: 'Por favor ingrese el precio', trigger: 'blur' },
     { validator: checkPrice, trigger: 'blur' }
+  ],
+  stock : [
+    { required: true, message: 'Por favor ingrese el stock', trigger: 'blur' },
+    { validator: checkStock, trigger: 'blur' }
   ]
 }
 
@@ -232,11 +245,12 @@ onMounted(() => {
     <!-- Tabla de datos -->
     <el-table :data="products" style="width: 100%">
       <el-table-column prop="name" label="Nombre" width="300" />
+              <!--
       <el-table-column label="Imagen" align="center">
         <template #default="{ row }">
           <img v-if="row.productPic" :src="row.productPic" class="avatar" style="max-width: 200px; max-height: 200px;" />
         </template>
-      </el-table-column>
+      </el-table-column>-->
       <el-table-column prop="categoryName" label="Categoría" />
       <el-table-column prop="price" label="Precio" />
       <el-table-column label="Visible">
@@ -247,6 +261,7 @@ onMounted(() => {
       </el-table-column>
         <el-table-column prop="offerTitle" label="Ofertas" />
 
+<el-table-column prop="stock" label="Cantidad" />
       <el-table-column label="Acciones" width="150">
         <template #default="{ row }">
           <el-button :icon="Edit" circle plain type="primary" @click="showDialog(row)"></el-button>
@@ -286,11 +301,15 @@ onMounted(() => {
         <el-form-item prop="price" label="Precio">
           <el-input v-model="productModel.price" type="number" placeholder="Ingrese el precio"></el-input>
         </el-form-item>
+        <el-form-item prop="stock" label="Cantidad">
+            <el-input v-model="productModel.stock" type="number" placeholder="Ingrese el stock"></el-input>
+          </el-form-item>
         <el-form-item label="Oferta">
           <el-select placeholder="Selecciona Oferta" v-model="productModel.offerId">
             <el-option v-for="o in offers" :key="o.id" :label="o.title" :value="o.id"></el-option>
           </el-select>
         </el-form-item>
+
         <el-form-item label="Imagen">
           <el-upload
             class="avatar-uploader"
