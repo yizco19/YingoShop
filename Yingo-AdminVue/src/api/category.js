@@ -21,3 +21,6 @@ export const categoryUpdateService = (categoryData) => {
 export const categoryDeleteService = (id) => {
     return request.delete('/category?id='+ id)
 }
+export const checkProductsAssociatedService = (id) => {
+    return request.get('/category/checkProductsAssociated?id='+ id)
+}

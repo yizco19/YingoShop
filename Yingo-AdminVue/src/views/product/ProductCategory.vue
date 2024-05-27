@@ -22,7 +22,8 @@ const categorys = ref([
     }
 ])
 
-import { categoryListService,categoryAddService,categoryUpdateService, categoryDeleteService } from '@/api/category.js';
+import { categoryListService,categoryAddService,categoryUpdateService,
+     categoryDeleteService,checkProductsAssociatedService } from '@/api/category.js';
 const categoryList = async () => {
     let result = await categoryListService();
     categorys.value = result.data;
@@ -84,35 +85,45 @@ const clearData = ()=>{
     categoryModel.value.categoryName = ''
     categoryModel.value.categoryAlias = ''
 }
-const deleteCategory =  (id)=>{
+
+const deleteCategory = (id) => {
     ElMessageBox.confirm(
-    '¿Estás seguro de eliminar esta categoría?',
-    'Warning',
-    {
-      confirmButtonText: 'OK',
-      cancelButtonText: 'Cancel',
-      type: 'warning',
-    }
-  )
-    .then(async() => {
-        let result =await categoryDeleteService(id);
-      ElMessage({
-        type: 'success',
-        message: 'Eliminado!',
-      })
-      // Cargar categorías
-      categoryList();
+        '¿Estás seguro de eliminar esta categoría?',
+        'Warning',
+        {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'warning',
+        }
+    )
+    .then(async () => {
+        // Comprueba si hay productos asociados a la categoría
+        let productCheckResult = await checkProductsAssociatedService(id);
+        if (productCheckResult.data && productCheckResult.data.success === false) {
+            ElMessage({
+                type: 'warning',
+                message: productCheckResult.data.message,
+            });
+            return;
+        }
 
+        // Si no hay productos asociados, procede a eliminar la categoría
+        let result = await categoryDeleteService(id);
+        ElMessage({
+            type: 'success',
+            message: 'Eliminado!',
+        });
 
-})
-    .catch(() => {
-      ElMessage({
-        type: 'info',
-        message: 'Cancelado',
-      })
+        // Cargar categorías
+        categoryList();
     })
+    .catch(() => {
+        ElMessage({
+            type: 'info',
+            message: 'Cancelado',
+        });
+    });
 }
-
 
 </script>
 <template>
