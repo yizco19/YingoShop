@@ -4,7 +4,6 @@
 
 - **api**: Directorio para archivos relacionados con la comunicación con la API.
 - **assets**: Directorio para archivos estáticos como imágenes y fuentes.
-- **components**: Directorio para componentes reutilizables de Vue.js.
 - **router**: Directorio para la configuración y definición de rutas de Vue Router.
 - **store**: Directorio para la configuración y definición de la gestión de estado global con Pinia.
 - **utils**: Directorio para archivos de utilidades y funciones auxiliares.
