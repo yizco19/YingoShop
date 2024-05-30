@@ -36,7 +36,7 @@ const productModel = ref({
 // Paginación
 const pageNum = ref(1)
 const total = ref(20)
-const pageSize = ref(4)
+const pageSize = ref(8)
 
 const tokenStore = useTokenStore()
 

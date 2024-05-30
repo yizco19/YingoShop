@@ -20,6 +20,14 @@ const offertModel = ref({
   endDate: ''
 })
 
+// Función para truncar descripciones largas
+const truncateDescription = (description, maxLength = 50) => {
+  if (description.length > maxLength) {
+    return description.substring(0, maxLength) + '...'
+  }
+  return description
+}
+
 // Reglas de validación
 const validateEndDate = (rule, value, callback) => {
   if (!value) {
@@ -54,7 +62,7 @@ const rules = ref({
 // Función para cargar las ofertas
 const offerList = async () => {
   let result = await offerListAllService()
- // cambia el formato de la fecha a YYYY-MM-DD
+  // cambia el formato de la fecha a YYYY-MM-DD
   for (let i = 0; i < result.data.length; i++) {
     result.data[i].startDate = new Date(result.data[i].startDate).toISOString().split('T')[0]
     result.data[i].endDate = new Date(result.data[i].endDate).toISOString().split('T')[0]
@@ -153,7 +161,11 @@ const actionDialog = async (formEl) => {
     <el-table :data="offers" style="width: 100%">
       <el-table-column prop="id" label="ID" width="100" />
       <el-table-column prop="title" label="Title" />
-      <el-table-column prop="description" label="Description" />
+      <el-table-column label="Description">
+        <template #default="{ row }">
+          <span>{{ truncateDescription(row.description) }}</span>
+        </template>
+      </el-table-column>
       <el-table-column prop="discount" label="Discount" />
       <el-table-column prop="startDate" label="Start Date" />
       <el-table-column prop="endDate" label="End Date" />
@@ -169,14 +181,12 @@ const actionDialog = async (formEl) => {
     </el-table>
   </el-card>
 
-  <el-drawer v-model="visibleDrawer" :title="title" :with-header="false">
+  <el-drawer v-model="visibleDrawer" :title="title" :with-header="false" direction="rtl" size="50%">
     <el-form :model="offertModel" :rules="rules" ref="form" label-width="120px">
       <el-form-item label="Title" prop="title">
         <el-input v-model="offertModel.title" />
       </el-form-item>
-      <el-form-item label="Description" prop="description">
-        <el-input v-model="offertModel.description" />
-      </el-form-item>
+
       <el-form-item label="Discount" prop="discount">
         <el-input v-model.number="offertModel.discount" />
       </el-form-item>
@@ -186,6 +196,9 @@ const actionDialog = async (formEl) => {
       <el-form-item label="End Date" prop="endDate">
         <el-date-picker v-model="offertModel.endDate" type="date" placeholder="Pick a day" />
       </el-form-item>
+      <el-form-item label="Description" prop="description">
+        <el-input v-model="offertModel.description" type="textarea" rows="8" />
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="actionDialog($refs.form)">Guardar</el-button>
         <el-button type="info" @click="visibleDrawer = false">Cancelar</el-button>
@@ -193,6 +206,7 @@ const actionDialog = async (formEl) => {
     </el-form>
   </el-drawer>
 </template>
+
 
 <style lang="scss" scoped>
 .page-container {
