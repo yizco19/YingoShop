@@ -20,11 +20,11 @@ Formato de los parámetros de solicitud: x-www-form-urlencoded
 
 Explicación de los parámetros de solicitud:
 
-| Nombre del Parámetro | Descripción      | Tipo   | Obligatorio | Observaciones               |
-| -------------------- | ---------------- | ------ | ----------- | --------------------------- |
-| username             | Nombre de usuario | string | Sí          | 5~16 caracteres no vacíos   |
-| email                | Correo electrónico| string | Sí          | Debe ser una email válida|
-| password             | Contraseña        | string | Sí          | 5~16 caracteres no vacíos   |
+| Nombre del Parámetro | Descripción        | Tipo   | Obligatorio | Observaciones             |
+| -------------------- | ------------------ | ------ | ----------- | ------------------------- |
+| username             | Nombre de usuario  | string | Sí          | 5~16 caracteres no vacíos |
+| email                | Correo electrónico | string | Sí          | Debe ser una email válida |
+| password             | Contraseña         | string | Sí          | 5~16 caracteres no vacíos |
 
 Ejemplo de datos de solicitud:
 
@@ -39,11 +39,11 @@ Tipo de datos de respuesta: application/json
 
 Explicación de los parámetros de respuesta:
 
-| Nombre   | Tipo    | Obligatorio | Valor predeterminado | Observaciones                  | Otros   |
-| -------- | ------- | ----------- | -------------------- | ------------------------------ | ------- |
-| code     | number  | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |         |
-| message  | string  | No          |                      | Mensaje de aviso               |         |
-| data     | object  | No          |                      | Datos devueltos                |         |
+| Nombre  | Tipo   | Obligatorio | Valor predeterminado | Observaciones                         | Otros |
+| ------- | ------ | ----------- | -------------------- | ------------------------------------- | ----- |
+| code    | number | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |       |
+| message | string | No          |                      | Mensaje de aviso                      |       |
+| data    | object | No          |                      | Datos devueltos                       |       |
 
 Ejemplo de datos de respuesta:
 
@@ -69,10 +69,10 @@ Formato de los parámetros de solicitud: x-www-form-urlencoded
 
 Explicación de los parámetros de solicitud:
 
-| Nombre del Parámetro | Descripción | Tipo   | Obligatorio | Observaciones          |
-| -------------------- | ----------- | ------ | ----------- | ---------------------- |
+| Nombre del Parámetro | Descripción                            | Tipo   | Obligatorio | Observaciones             |
+| -------------------- | -------------------------------------- | ------ | ----------- | ------------------------- |
 | username_or_email    | Nombre de usuario o Correo electrónico | string | Sí          | 5~16 caracteres no vacíos |
-| password             | Contraseña        | string | Sí          | 5~16 caracteres no vacíos |
+| password             | Contraseña                             | string | Sí          | 5~16 caracteres no vacíos |
 
 Ejemplo de datos de solicitud:
 
@@ -87,11 +87,11 @@ Tipo de datos de respuesta: application/json
 
 Explicación de los parámetros de respuesta:
 
-| Nombre   | Tipo    | Obligatorio | Valor predeterminado | Observaciones                  | Otros   |
-| -------- | ------- | ----------- | -------------------- | ------------------------------ | ------- |
-| code     | number  | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |         |
-| message  | string  | No          |                      | Mensaje de aviso               |         |
-| data     | string  | Sí          |                      | Datos devueltos, token JWT    |         |
+| Nombre  | Tipo   | Obligatorio | Valor predeterminado | Observaciones                         | Otros |
+| ------- | ------ | ----------- | -------------------- | ------------------------------------- | ----- |
+| code    | number | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |       |
+| message | string | No          |                      | Mensaje de aviso                      |       |
+| data    | string | Sí          |                      | Datos devueltos, token JWT            |       |
 
 Ejemplo de datos de respuesta:
 
@@ -133,21 +133,21 @@ Tipo de datos de respuesta: application/json
 
 Explicación de los parámetros de respuesta:
 
-| Nombre        | Tipo   | Obligatorio | Valor predeterminado | Observaciones                  | Otros   |
-| ------------- | ------ | ----------- | -------------------- | ------------------------------ | ------- |
-| code          | number | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |         |
-| message       | string | No          |                      | Mensaje de aviso               |         |
-| data          | object | Sí          |                      | Datos devueltos                |         |
-| \|-id         | number | No          |                      | ID principal                   |         |
-| \|-username   | string | No          |                      | Nombre de usuario              |         |
-| \|-nickname   | string | No          |                      | Apodo                          |         |
-| \|-email      | string | No          |                      | Correo electrónico            |         |
-| \|-userPic    | string | No          |                      | URL de la imagen de perfil     |         |
-| \|-gender     | string | No          |                      | Género (0-masculino, 1-femenino)|         |
-| \|-birthdate  | string | No          |                      | Fecha de nacimiento            |         |
-| \|-address    | string | No          |                      | Dirección del usuario          |         |
-| \|-phone      | string | No          |                      | Número de teléfono del usuario |         |
-| \|-createTime | string | No          |                      | Hora de creación               |         |
+| Nombre        | Tipo   | Obligatorio | Valor predeterminado | Observaciones                         | Otros |
+| ------------- | ------ | ----------- | -------------------- | ------------------------------------- | ----- |
+| code          | number | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |       |
+| message       | string | No          |                      | Mensaje de aviso                      |       |
+| data          | object | Sí          |                      | Datos devueltos                       |       |
+| \|-id         | number | No          |                      | ID principal                          |       |
+| \|-username   | string | No          |                      | Nombre de usuario                     |       |
+| \|-nickname   | string | No          |                      | Apodo                                 |       |
+| \|-email      | string | No          |                      | Correo electrónico                    |       |
+| \|-userPic    | string | No          |                      | URL de la imagen de perfil            |       |
+| \|-gender     | string | No          |                      | Género (0-masculino, 1-femenino)      |       |
+| \|-birthdate  | string | No          |                      | Fecha de nacimiento                   |       |
+| \|-address    | string | No          |                      | Dirección del usuario                 |       |
+| \|-phone      | string | No          |                      | Número de teléfono del usuario        |       |
+| \|-createTime | string | No          |                      | Hora de creación                      |       |
 
 Ejemplo de datos de respuesta:
 
@@ -188,17 +188,17 @@ Tipo de datos de respuesta: application/json
 
 Explicación de los parámetros de solicitud:
 
-| Nombre        | Descripción                | Tipo   | Obligatorio | Observaciones                       |
-| ------------- | -------------------------- | ------ | ----------- | ----------------------------------- |
-| id            | ID principal               | number | Sí
-| username      | Nombre de usuario          | string | No          | 5~16 caracteres no vacíos          |
-| nickname      | Apodo                      | string | No          |                                   |
-| email         | Correo electrónico         | string | No          | Debe ser una email válida      |
-| gender        | Género                     | string | No          | 0-masculino, 1-femenino             |
-| birthdate     | Fecha de nacimiento        | string | No          | Formato: "YYYY-MM-DD"               |
-| address       | Dirección del usuario      | string | No          |                                   |
-| phone         | Número de teléfono         | string | No          |                                   |
-| createTime    | Hora de creación          | string | No          |                                   |
+| Nombre     | Descripción           | Tipo   | Obligatorio | Observaciones             |
+| ---------- | --------------------- | ------ | ----------- | ------------------------- |
+| id         | ID principal          | number | Sí          |
+| username   | Nombre de usuario     | string | No          | 5~16 caracteres no vacíos |
+| nickname   | Apodo                 | string | No          |                           |
+| email      | Correo electrónico    | string | No          | Debe ser una email válida |
+| gender     | Género                | string | No          | 0-masculino, 1-femenino   |
+| birthdate  | Fecha de nacimiento   | string | No          | Formato: "YYYY-MM-DD"     |
+| address    | Dirección del usuario | string | No          |                           |
+| phone      | Número de teléfono    | string | No          |                           |
+| createTime | Hora de creación      | string | No          |                           |
 
 Ejemplo de datos de solicitud:
 
@@ -219,11 +219,11 @@ Tipo de datos de respuesta: application/json
 
 Explicación de los parámetros de respuesta:
 
-| Nombre   | Tipo   | Obligatorio | Valor predeterminado | Observaciones                  | Otros   |
-| -------- | ------ | ----------- | -------------------- | ------------------------------ | ------- |
-| code     | number | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |         |
-| message  | string | No          |                      | Mensaje de aviso               |         |
-| data     | object | No          |                      | Datos devueltos                |         |
+| Nombre  | Tipo   | Obligatorio | Valor predeterminado | Observaciones                         | Otros |
+| ------- | ------ | ----------- | -------------------- | ------------------------------------- | ----- |
+| code    | number | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |       |
+| message | string | No          |                      | Mensaje de aviso                      |       |
+| data    | object | No          |                      | Datos devueltos                       |       |
 
 Ejemplo de datos de respuesta:
 
@@ -253,9 +253,9 @@ Formato de los parámetros de solicitud: queryString
 
 Explicación de los parámetros de solicitud:
 
-| Nombre     | Descripción | Tipo   | Obligatorio | Observaciones          |
-| ---------- | ----------- | ------ | ----------- | ---------------------- |
-| avatarUrl  | URL de la imagen de perfil | string | Sí          | Dirección URL de la imagen de perfil |
+| Nombre    | Descripción                | Tipo   | Obligatorio | Observaciones                        |
+| --------- | -------------------------- | ------ | ----------- | ------------------------------------ |
+| avatarUrl | URL de la imagen de perfil | string | Sí          | Dirección URL de la imagen de perfil |
 
 Ejemplo de datos de solicitud:
 
@@ -269,11 +269,11 @@ Tipo de datos de respuesta: application/json
 
 Explicación de los parámetros de respuesta:
 
-| Nombre   | Tipo   | Obligatorio | Valor predeterminado | Observaciones                  | Otros   |
-| -------- | ------ | ----------- | -------------------- | ------------------------------ | ------- |
-| code     | number | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |         |
-| message  | string | No          |                      | Mensaje de aviso               |         |
-| data     | object | No          |                      | Datos devueltos                |         |
+| Nombre  | Tipo   | Obligatorio | Valor predeterminado | Observaciones                         | Otros |
+| ------- | ------ | ----------- | -------------------- | ------------------------------------- | ----- |
+| code    | number | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |       |
+| message | string | No          |                      | Mensaje de aviso                      |       |
+| data    | object | No          |                      | Datos devueltos                       |       |
 
 Ejemplo de datos de respuesta:
 
@@ -304,11 +304,11 @@ Formato de los parámetros de solicitud: application/json
 
 Explicación de los parámetros de solicitud:
 
-| Nombre  | Descripción          | Tipo   | Obligatorio | Observaciones                       |
-| ------- | -------------------- | ------ | ----------- | ----------------------------------- |
-| old_pwd | Contraseña anterior  | string | Sí          |                                     |
-| new_pwd | Nueva contraseña     | string | Sí          |                                     |
-| re_pwd  | Confirmar nueva contraseña | string | Sí     |                                     |
+| Nombre  | Descripción                | Tipo   | Obligatorio | Observaciones |
+| ------- | -------------------------- | ------ | ----------- | ------------- |
+| old_pwd | Contraseña anterior        | string | Sí          |               |
+| new_pwd | Nueva contraseña           | string | Sí          |               |
+| re_pwd  | Confirmar nueva contraseña | string | Sí          |               |
 
 Ejemplo de datos de solicitud:
 
@@ -323,3 +323,411 @@ Ejemplo de datos de solicitud:
 # 2. Interfaz de Categorías de productos
 
 ### 2.1 Lista de categorías de produtos
+
+#### 2.1.1 Información Básica
+> Ruta : /user/register
+>
+> Método ：POST
+>
+> Descripción : Esta interfase se utiliza para agregar nuevas categorías de productos.
+
+#### 2.1.2 Parámetros de Solicitud
+
+Formato de los parámetros de solicitud: x-www-form-urlencoded
+
+Explicación de los parámetros de solicitud:
+
+| Nombre del Parámetro | Descripción  | Tipo    | Obligatorio | Observaciones |
+| -------------------- | ------------ | ------- | ----------- | ------------- |
+| id                   | No requerido | Integer | NO          |
+| categoryId           | categoriaId  | Integer | Sí          |
+| name                 | nombre       | String  | Sí          |
+| description          | descripción  | String  | Sí          |
+| stock                | cantidad     | Integer | No          |
+| productPic           | imagen       | String  | No          |
+| price                | precio       | Double  | Sí          |
+| visible              | visible      | Boolean | No          |
+| offerId              | id oferta    | Integer | No          |
+
+Ejemplo de datos de solicitud:
+```
+{
+   "id" : 0,
+   "categoryId" : 0,
+   "name" : "String",
+   "description" : "String",
+   "stock" : 0,
+   "productPic" : "String",
+   "visible" : true,
+   "offerId" : 0
+}
+```
+### 2.1.3 Datos de Respuesta
+
+Tipo de datos de respuesta: application/json
+| Nombre  | Tipo   | Obligatorio | Valor predeterminado | Observaciones                         | Otros |
+| ------- | ------ | ----------- | -------------------- | ------------------------------------- | ----- |
+| code    | number | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |       |
+| message | string | No          |                      | Mensaje de aviso                      |       |
+| data    | string | Sí          |                      | Datos devueltos, token JWT            |       |
+
+Ejemplo de datos de respuesta:
+```
+{
+   "code" : 0,
+   "message" : "Operación exitosa",
+   "data" : null
+}
+```
+
+## 2.2 Listar productos
+
+#### 2.2.1 Información Básica
+> Ruta : /product
+>
+> Método GET
+>
+> Descripción : Esta interfase se utiliza para obtener todos los productos.
+
+#### 2.2.2 Parámetros de Solicitud
+
+Formato de los parámetros de solicitud: FormData
+
+Explicación de los parámetros de solicitud:
+
+| Nombre del Parámetro | Descripción      | Tipo    | Obligatorio | Observaciones |
+| -------------------- | ---------------- | ------- | ----------- | ------------- |
+| pageNum              | Numero de página | Integer | Sí          |
+| pageSize             | Tamaño de página | Integer | Sí          |
+| categoryId           | No requerido     | Integer | NO          |
+| productName          | No requerido     | String  | NO          |
+
+Ejemplo de datos de solicitud:
+```
+{
+   "pageNum" : 2,
+   "pageSize" : 5,
+   "categoryId" : 2,
+   "productName" : "ROG"
+}
+```
+
+#### 2.2.3 Datos de Respuesta
+
+Tipo de datos de respuesta: application/json
+| Nombre          | Tipo          | Obligatorio | Valor predeterminado | Observaciones                         |
+| --------------- | ------------- | ----------- | -------------------- | ------------------------------------- |
+| code            | number        | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |
+| message         | string        | No          |                      |                                       |
+| data            | object        | Sí          |                      |                                       |
+| --total         | Long          | No          |                      | Total de productos                    |
+| --items         | List[Product] | No          |                      | Lista de productos                    |
+| ----id          | Integer       | No          |                      | ID principal                          |
+| ----categoryId  | Integer       | No          |                      | ID de la categoría                    |
+| ----name        | String        | No          |                      | Nombre del producto                   |
+| ----description | String        | No          |                      | Descripción del producto              |
+| ----stock       | Integer       | No          |                      | Cantidad de productos en stock        |
+| ----productPic  | String        | No          |                      | URL de la imagen del producto         |
+| ----visible     | Boolean       | No          |                      | Estado de visibilidad del producto    |
+| ----offerId     | Integer       | No          |                      | ID de la oferta                       |
+
+Ejemplo de datos de respuesta:
+```
+{
+   "code" : 0,
+   "message" : "String",
+   "data" : {
+      "total" : 0,
+      "items" : [{
+         "id" : 0,
+         "categoryId" : 0,
+         "name" : "String",
+         "description" : "String",
+         "stock" : 0,
+         "productPic" : "String",
+         "visible" : true,
+         "offerId" : 0
+      }]
+   }
+}
+```
+
+### 2.3 Lista de productos sin paginación
+
+
+#### 2.2.1 Información Básica
+> Ruta : /product
+>
+> Método GET
+>
+> Descripción : Esta interfase se utiliza para obtener todos los productos sin paginación.
+
+#### 2.2.2 Parámetros de Solicitud
+
+Ninguno
+
+#### 2.2.3 Datos de Respuesta
+
+Tipo de datos de respuesta: application/json
+| Nombre          | Tipo          | Obligatorio | Valor predeterminado | Observaciones                         |
+| --------------- | ------------- | ----------- | -------------------- | ------------------------------------- |
+| code            | number        | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |
+| message         | string        | No          |                      |                                       |
+| data            | object        | Sí          |                      |                                       |
+| --total         | Long          | No          |                      | Total de productos                    |
+| --items         | List[Product] | No          |                      | Lista de productos                    |
+| ----id          | Integer       | No          |                      | ID principal                          |
+| ----categoryId  | Integer       | No          |                      | ID de la categoría                    |
+| ----name        | String        | No          |                      | Nombre del producto                   |
+| ----description | String        | No          |                      | Descripción del producto              |
+| ----stock       | Integer       | No          |                      | Cantidad de productos en stock        |
+| ----productPic  | String        | No          |                      | URL de la imagen del producto         |
+| ----visible     | Boolean       | No          |                      | Estado de visibilidad del producto    |
+| ----offerId     | Integer       | No          |                      | ID de la oferta                       |
+
+Ejemplo de datos de respuesta:
+```
+{
+   "code" : 0,
+   "message" : "String",
+   "data" : {
+      "total" : 0,
+      "items" : [{
+         "id" : 0,
+         "categoryId" : 0,
+         "name" : "String",
+         "description" : "String",
+         "stock" : 0,
+         "productPic" : "String",
+         "visible" : true,
+         "offerId" : 0
+      }]
+   }
+}
+```
+
+### 2.4 Detalle de un producto
+
+#### 2.4.1 Información Básica
+> Ruta : /product/detail
+>
+> Método GET
+>
+> Descripción : Esta interfase se utiliza para obtener los datos de un producto.
+
+#### 2.4.2 Parámetros de Solicitud
+
+Formato de los parámetros de solicitud: FormData
+
+Explicación de los parámetros de solicitud:
+
+| Nombre del Parámetro | Descripción     | Tipo    | Obligatorio | Observaciones |
+| -------------------- | --------------- | ------- | ----------- | ------------- |
+| id                   | ID del producto | Integer | Sí          |               |
+
+Ejemplo de datos de respuesta:
+
+```shell
+    id=2
+```
+
+### 2.4.3 Datos de Respuesta
+
+Tipo de datos de respuesta: application/json
+
+Explicación de los parámetros de respuesta:
+
+| Nombre        | Tipo    | Obligatorio | Valor predeterminado | Observaciones                         |
+| ------------- | ------- | ----------- | -------------------- | ------------------------------------- |
+| code          | Integer | No          |                      | Código de respuesta, 0-éxito, 1-fallo |
+| message       | String  | No          |                      | Mensaje de aviso                      |
+| data          | Object  | No          |                      | Datos devueltos                       |
+| --id          | Integer | No          |                      | ID principal                          |
+| --categoryId  | Integer | No          |                      | ID de la categoría                    |
+| --name        | String  | No          |                      | Nombre del producto                   |
+| --description | String  | No          |                      | Descripción del producto              |
+| --stock       | Integer | No          |                      | Cantidad de productos en stock        |
+| --productPic  | String  | No          |                      | URL de la imagen del producto         |
+| --visible     | Boolean | No          |                      | Estado de visibilidad del producto    |
+| --offerId     | Integer | No          |                      | ID de la oferta                       |
+
+Ejemplo de datos de respuesta:
+
+
+```
+{
+   "code" : 0,
+   "message" : "String",
+   "data" : {
+      "id" : 0,
+      "categoryId" : 0,
+      "name" : "String",
+      "description" : "String",
+      "stock" : 0,
+      "productPic" : "String",
+      "visible" : true,
+      "offerId" : 0
+   }
+}
+```
+
+###  2.5 Eliminar un producto
+
+#### 2.5.1 Información Básica
+> Ruta : /product
+>
+> Método DELETE
+>
+> Descripción : Esta interfase se utiliza para eliminar un producto.
+
+### 2.5.2 Parámetros de Solicitud
+
+Formato de los parámetros de solicitud: FormData
+
+Explicación de los parámetros de solicitud:
+
+| Nombre del Parámetro | Descripción     | Tipo    | Obligatorio | Observaciones                         |
+| -------------------- | --------------- | ------- | ----------- | ------------------------------------- |
+| id                   | ID del producto | Integer | Sí          | id del producto que se desea eliminar |
+
+Ejemplo de datos de respuesta:
+
+```shell
+    id=2
+```
+
+### 2.5.3 Datos de Respuesta
+
+Tipo de datos de respuesta: application/json
+
+Explicación de los parámetros de respuesta:
+
+| Nombre  | Tipo   | Obligatorio | Valor predeterminado | Observaciones                         | Otros |
+| ------- | ------ | ----------- | -------------------- | ------------------------------------- | ----- |
+| code    | number | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |       |
+| message | string | No          |                      | Mensaje de aviso                      |       |
+| data    | object | No          |                      | Datos devueltos                       |       |
+
+Ejemplo de datos de respuesta:
+
+```json
+{
+    "code": 0,
+    "message": "Operación exitosa",
+    "data": null
+}
+```
+### 2.6 Actualizar un producto
+
+#### 2.6.1 Información Básica
+> Ruta : /product
+>
+> Método : PUT
+>
+> Descripción : Esta interfase se utiliza para actualizar un producto.
+
+#### 2.6.2 Parámetros de Solicitud
+
+Formato de los parámetros de solicitud: x-www-form-urlencoded
+
+Explicación de los parámetros de solicitud:
+
+| Nombre del Parámetro | Descripción                    | Tipo    | Obligatorio | Observaciones |
+| -------------------- | ------------------------------ | ------- | ----------- | ------------- |
+| id                   | ID del Producto                | Integer | Sí          |               |
+| categoryId           | ID de la Categoría             | Integer | Sí          |               |
+| name                 | Nombre del Producto            | String  | Sí          |               |
+| description          | Descripción del Producto       | String  | Sí          |               |
+| stock                | Cantidad de Productos en Stock | Integer | Sí          |               |
+| productPic           | URL de la Imagen del Producto  | String  | Sí          |               |
+| visible              | Visibilidad del Producto       | Boolean | Sí          |               |
+| offerId              | ID de la Oferta                | Integer | Sí          |               |
+
+Ejemplo de datos de respuesta:
+
+```json
+{
+    "id": 0,
+    "categoryId": 0,
+    "name": "String",
+    "description": "String",
+    "stock": 0,
+    "productPic": "String",
+    "visible": 0,
+    "offerId": 0
+
+}
+
+```
+
+### 2.6.3 Datos de Respuesta
+
+Tipo de datos de respuesta: application/json
+
+Explicación de los parámetros de respuesta:
+
+| Nombre  | Tipo   | Obligatorio | Valor predeterminado | Observaciones                         | Otros |
+| ------- | ------ | ----------- | -------------------- | ------------------------------------- | ----- |
+| code    | number | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |       |
+| message | string | No          |                      | Mensaje de aviso                      |       |
+| data    | object | No          |                      | Datos devueltos                       |       |
+
+Ejemplo de datos de respuesta:
+
+Ejemplo de datos de respuesta:
+
+```json
+{
+    "code": 0,
+    "message": "Operación exitosa",
+    "data": null
+}
+```
+
+### 2.7 Actualizar visibilidad de un Producto
+
+#### 2.7.1 Información Básica
+> Ruta : /product/visibility
+>
+> Método : PUT
+>
+> Descripción : Esta interfase se utiliza para actualizar la visibilidad de un producto.
+
+#### 2.7.2 Parámetros de Solicitud
+
+Formato de los parámetros de solicitud: FormData
+Explicación de los parámetros de solicitud:
+
+| Nombre del Parámetro | Descripción              | Tipo    | Obligatorio | Observaciones                        |
+| -------------------- | ------------------------ | ------- | ----------- | ------------------------------------ |
+| id                   | ID del Producto          | Integer | Sí          | id del Producto que se desea cambiar |
+| visible              | Visibilidad del Producto | Boolean | Sí          | visibilidad del producto             |
+Ejemplo de datos de respuesta:
+
+```shell
+    id=2&visible=true
+```
+
+### 2.7.3 Datos de Respuesta
+
+
+Tipo de datos de respuesta: application/json
+
+Explicación de los parámetros de respuesta:
+
+| Nombre   | Tipo   | Obligatorio | Valor predeterminado | Observaciones                  | Otros   |
+| -------- | ------ | ----------- | -------------------- | ------------------------------ | ------- |
+| code     | number | Sí          |                      | Código de respuesta, 0-éxito, 1-fallo |         |
+| message  | string | No          |                      | Mensaje de aviso               |         |
+| data     | object | No          |                      | Datos devueltos                |         |
+
+Ejemplo de datos de respuesta:
+
+```json
+{
+    "code": 0,
+    "message": "Operación exitosa",
+    "data": null
+}
+```
+
