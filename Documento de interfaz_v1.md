@@ -708,7 +708,7 @@ Ejemplo de datos de respuesta:
     id=2&visible=true
 ```
 
-### 2.7.3 Datos de Respuesta
+#### 2.7.3 Datos de Respuesta
 
 
 Tipo de datos de respuesta: application/json
