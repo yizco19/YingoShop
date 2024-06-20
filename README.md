@@ -19,8 +19,8 @@ YingoShop es un proyecto que consiste en el desarrollo de un sistema de comercio
 - Desarrollo de una aplicación de cliente en Kotlin para visualizar productos y realizar pedidos.
 
 ## Instrucciones de Ejecución
-[Servidor](https://github.com/yizco19/YingoShop/tree/master)
-[App cliente](https://github.com/yizco19/Yingo_App)
+[Yingo-Server]([https://github.com/yizco19/YingoShop/tree/master](https://github.com/yizco19/Yingo-Server))
+[Yingo-App](https://github.com/yizco19/Yingo_App)
 
 
 ## Contribución
